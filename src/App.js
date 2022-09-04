@@ -1,7 +1,8 @@
-import React from 'react';
+import { Button } from '@mui/material'
+import React from 'react'
 
 function App() {
-  return <h1>Hello React!</h1>;
+  return <Button></Button>
 }
 
-export default App;
+export default App
