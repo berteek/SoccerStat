@@ -13,7 +13,7 @@ export default function Navbar() {
         paddingLeft: "70px"
       }}
     >
-      <NavbarItem to="/" label="Лиги" />
+      <NavbarItem to="/soccer-stat" label="Лиги" />
       <NavbarItem to="/teams" label="Команды" />
     </Box>
   )

@@ -7,7 +7,7 @@ import Teams from "../teams"
 export default function Navigation() {
   return (
     <Routes>
-      <Route path="/" element={<Leagues />} />
+      <Route path="/soccer-stat" element={<Leagues />} />
       <Route path="/teams" element={<Teams />} />
     </Routes>
   )
