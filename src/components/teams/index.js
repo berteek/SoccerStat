@@ -1,7 +1,7 @@
 import React from "react"
 
-import { TabPanel } from "@mui/lab"
+import { Typography } from "@mui/material"
 
 export default function Teams() {
-  return <TabPanel value="2">Список команд</TabPanel>
+  return <Typography>Команды</Typography>
 }
