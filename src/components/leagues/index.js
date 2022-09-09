@@ -28,7 +28,6 @@ export default function Leagues() {
         sx={{
           backgroundColor: "primary.main",
           padding: 2,
-          width: 200,
           height: 100
         }}
       >
