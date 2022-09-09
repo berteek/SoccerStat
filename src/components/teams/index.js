@@ -1,7 +1,12 @@
 import React from "react"
 
-import { Typography } from "@mui/material"
+import { Box } from "@mui/material"
+import Searchbar from "../searchbar"
 
 export default function Teams() {
-  return <Typography>Команды</Typography>
+  return (
+    <Box sx={{ padding: 2, paddingLeft: 4 }}>
+      <Searchbar label="Поиск по командам" />
+    </Box>
+  )
 }

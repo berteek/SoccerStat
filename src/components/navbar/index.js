@@ -10,7 +10,8 @@ export default function Navbar() {
       sx={{
         display: "flex",
         backgroundColor: "primary.main",
-        paddingLeft: "70px"
+        paddingLeft: "70px",
+        gap: 3
       }}
     >
       <NavbarItem to="/soccer-stat" label="Лиги" />

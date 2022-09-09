@@ -2,21 +2,28 @@ import React from "react"
 import { Link } from "react-router-dom"
 import PropTypes from "prop-types"
 
-import { Button } from "@mui/material"
+import { Box, Button } from "@mui/material"
 
 export default function NavbarItem(props) {
   const { to, label } = props
 
   const menuItemStyle = {
     textDecoration: "none",
-    color: "#000",
-    padding: "10px 20px"
+    padding: "20px 30px",
+    fontSize: "1.3em"
   }
 
   return (
-    <Button color="secondary" component={Link} to={to} style={menuItemStyle}>
-      {label}
-    </Button>
+    <Box
+      sx={{
+        backgroundColor: "primary.lighter",
+        width: "fit-content"
+      }}
+    >
+      <Button color="dark" component={Link} to={to} style={menuItemStyle}>
+        {label}
+      </Button>
+    </Box>
   )
 }
 
