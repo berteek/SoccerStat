@@ -1,5 +1,5 @@
 import React from "react"
-import { Route, Routes } from "react-router-dom"
+import { Navigate, Route, Routes } from "react-router-dom"
 
 import Leagues from "../leagues"
 import Teams from "../teams"
@@ -7,7 +7,8 @@ import Teams from "../teams"
 export default function Navigation() {
   return (
     <Routes>
-      <Route path="/soccer-stat" element={<Leagues />} />
+      <Route path="/" element={<Navigate to="/leagues" />} />
+      <Route path="/leagues" element={<Leagues />} />
       <Route path="/teams" element={<Teams />} />
     </Routes>
   )

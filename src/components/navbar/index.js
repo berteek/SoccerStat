@@ -14,7 +14,7 @@ export default function Navbar() {
         gap: 3
       }}
     >
-      <NavbarItem to="/soccer-stat" label="Лиги" />
+      <NavbarItem to="/leagues" label="Лиги" />
       <NavbarItem to="/teams" label="Команды" />
     </Box>
   )
