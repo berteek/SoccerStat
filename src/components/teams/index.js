@@ -1,39 +1,27 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
-import { Card, Typography } from "@mui/material"
+import { Box, Card, Typography } from "@mui/material"
 import GridWithSearchAndPagination from "../grid-search-pagination"
 
-import { Team } from "./Team"
+import { useMatches } from "../../app/repository"
 
 export default function Teams() {
-  const items = [
-    new Team("one"),
-    new Team("two"),
-    new Team("three"),
-    new Team("four"),
-    new Team("five"),
-    new Team("six"),
-    new Team("seven"),
-    new Team("eight"),
-    new Team("nine"),
-    new Team("ten"),
-    new Team("eleven"),
-    new Team("twelve"),
-    new Team("thirteen"),
-    new Team("fourteen")
-  ]
+  const items = useMatches()
 
   const mapper = (item) => {
     return (
-      <Card
-        sx={{
-          backgroundColor: "primary.main",
-          padding: 2,
-          height: 100
-        }}
-      >
-        <Typography>{item.name}</Typography>
-      </Card>
+      <Box component={Link} to="/matches">
+        <Card
+          sx={{
+            backgroundColor: "primary.main",
+            padding: 2,
+            height: 100
+          }}
+        >
+          <Typography>{item.homeTeam}</Typography>
+        </Card>
+      </Box>
     )
   }
 

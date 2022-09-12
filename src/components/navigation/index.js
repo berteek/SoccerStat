@@ -12,7 +12,7 @@ export default function Navigation() {
       <Route path="/soccer-stat" element={<Navigate to="/leagues" />} />
       <Route path="/leagues" element={<Leagues />} />
       <Route path="/teams" element={<Teams />} />
-      <Route path="/matches/:type&:id" element={<Matches />} />
+      <Route path="/matches" element={<Matches />} />
     </Routes>
   )
 }

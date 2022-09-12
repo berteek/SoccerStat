@@ -1,35 +1,11 @@
 import React from "react"
-// import PropTypes from "prop-types"
 
 import { Box, Stack, TextField, Typography } from "@mui/material"
 import { DataGrid } from "@mui/x-data-grid"
-import { useParams } from "react-router-dom"
+import { useFilteredMatches } from "../../app/repository"
 
 export default function Matches() {
-  //   const { matches } = props
-
-  const { type, id } = useParams()
-
-  const matches = [
-    {
-      id: 1,
-      date: "01.02.0003",
-      time: "04:05",
-      status: "В процессе",
-      homeTeam: "Домашние",
-      awayTeam: "Гости",
-      score: "6:7"
-    },
-    {
-      id: 2,
-      date: "01.02.0003",
-      time: "04:05",
-      status: "В процессе",
-      homeTeam: "Домашние",
-      awayTeam: "Гости",
-      score: "6:7"
-    }
-  ]
+  const matches = useFilteredMatches()
 
   const columns = [
     {
@@ -92,7 +68,3 @@ export default function Matches() {
     </Stack>
   )
 }
-
-// Matches.propTypes = {
-//   matches: PropTypes.instanceOf(Array).isRequired
-// }
