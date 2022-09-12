@@ -27,7 +27,7 @@ const initialValues = [
 
 const initialState = {
   value: initialValues,
-  filteredValue: initialValues
+  filteredValue: []
 }
 
 export const matchesSlice = createSlice({
