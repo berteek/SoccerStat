@@ -21,8 +21,6 @@ export default function GridWithSearchAndPagination(props) {
     )
   })
 
-  console.log(pages[0])
-
   return (
     <Box sx={{ padding: 2, paddingLeft: 4 }}>
       <Searchbar label={searchLabel} />
