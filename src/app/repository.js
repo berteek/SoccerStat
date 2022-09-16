@@ -13,7 +13,7 @@ async function fetchData(filters) {
 
   const response = await fetch(url, {
     headers: {
-      "X-Auth-Token": "cca00f0b9f524fe197438681e537ed97"
+      "X-Auth-Token": process.env.REACT_APP_API_KEY
     }
   })
 
