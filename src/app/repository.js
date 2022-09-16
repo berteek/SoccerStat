@@ -1,38 +1,42 @@
 import { useQuery } from "react-query"
 
-import { useSelector, useDispatch } from "react-redux"
-import { filterMatches as reduxFilterMatches } from "../features/matchesSlice"
+import { useSelector } from "react-redux"
+import {
+  selectLeague as sliceSelectLeague,
+  selectTeam as sliceSelectTeam
+} from "../features/dataSlice"
 
-export function useMatches() {
-  return useSelector((state) => state.matches.value)
-}
+async function fetchData(filters) {
+  const url = "https://api.football-data.org/v2".concat(filters)
 
-export function useFilteredMatches() {
-  return useSelector((state) => state.matches.filteredValue)
-}
-
-export function useFilterMatches(filter) {
-  const dispatch = useDispatch()
-  dispatch(reduxFilterMatches(filter))
-}
-
-const fetchData = async (filters) => {
-  const url = "https://api.football-data.org/v2/competitions".concat(filters)
+  console.log(url)
 
   const response = await fetch(url, {
     headers: {
       "X-Auth-Token": "cca00f0b9f524fe197438681e537ed97"
     }
   })
+
   return response.json()
 }
 
-export function useGetCompetitions() {
-  return useQuery("competitions", () => fetchData(""))
+export function useGetMatches() {
+  const selection = useSelector((state) => state.data.selection)
+  return useQuery("matches", () => fetchData(selection.concat("/matches")))
 }
 
-export function useGetMatches(leagueCode) {
-  return useQuery("competitions", () =>
-    fetchData("/".concat(leagueCode, "/matches"))
-  )
+export function selectLeague(dispatch, leagueCode) {
+  dispatch(sliceSelectLeague(leagueCode))
+}
+
+export function selectTeam(dispatch, teamCode) {
+  dispatch(sliceSelectTeam(teamCode))
+}
+
+export function useGetLeagues() {
+  return useQuery("leagues", () => fetchData("/competitions"))
+}
+
+export function useGetTeams() {
+  return useQuery("teams", () => fetchData("/teams"))
 }

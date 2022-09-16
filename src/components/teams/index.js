@@ -1,25 +1,36 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { useDispatch } from "react-redux"
 
 import { Box, Card, Typography } from "@mui/material"
 import GridWithSearchAndPagination from "../grid-search-pagination"
 
-import { useMatches } from "../../app/repository"
+import { useGetTeams, selectTeam } from "../../app/repository"
 
 export default function Teams() {
-  const items = useMatches()
+  const { data, status } = useGetTeams()
+  const dispatch = useDispatch()
 
-  const mapper = (item) => {
+  if (status === "loading") {
+    return <div>Loading...</div>
+  }
+
+  if (status === "error") {
+    return <div>Error</div>
+  }
+
+  const mapper = (team) => {
     return (
       <Box component={Link} to="/matches">
         <Card
+          onClick={() => selectTeam(dispatch, team.id)}
           sx={{
             backgroundColor: "primary.main",
             padding: 2,
             height: 100
           }}
         >
-          <Typography>{item.homeTeam}</Typography>
+          <Typography>{team.name}</Typography>
         </Card>
       </Box>
     )
@@ -28,7 +39,7 @@ export default function Teams() {
   return (
     <GridWithSearchAndPagination
       mapper={mapper}
-      items={items}
+      items={data.teams}
       searchLabel="Поиск по командам"
       itemsPerPage={12}
     />

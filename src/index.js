@@ -21,14 +21,14 @@ const queryClient = new QueryClient()
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
         <BrowserRouter>
           <ThemeProvider theme={theme}>
             <App />
           </ThemeProvider>
         </BrowserRouter>
-      </QueryClientProvider>
-    </Provider>
+      </Provider>
+    </QueryClientProvider>
   </React.StrictMode>
 )

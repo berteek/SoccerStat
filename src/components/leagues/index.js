@@ -1,26 +1,38 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { useDispatch } from "react-redux"
 
 import { Box, Card, Typography } from "@mui/material"
 import GridWithSearchAndPagination from "../grid-search-pagination"
 
-import { useMatches } from "../../app/repository"
+import { useGetLeagues, selectLeague } from "../../app/repository"
 
 export default function Leagues() {
-  const items = useMatches()
+  const { data, status } = useGetLeagues()
+  const dispatch = useDispatch()
 
-  const mapper = (item) => {
+  if (status === "loading") {
+    return <div>Loading...</div>
+  }
+
+  if (status === "error") {
+    return <div>Error</div>
+  }
+
+  const mapper = (league) => {
     return (
       <Box component={Link} to="/matches">
         <Card
+          onClick={() => selectLeague(dispatch, league.id)}
           sx={{
             backgroundColor: "primary.main",
             padding: 2,
             height: 100
           }}
         >
-          <Typography>{item.league}</Typography>
-          <Typography>{item.country}</Typography>
+          <Typography>{league.id}</Typography>
+          <Typography>{league.name}</Typography>
+          <Typography>{league.area.name}</Typography>
         </Card>
       </Box>
     )
@@ -29,7 +41,7 @@ export default function Leagues() {
   return (
     <GridWithSearchAndPagination
       mapper={mapper}
-      items={items}
+      items={data.competitions}
       searchLabel="Поиск по лигам"
       itemsPerPage={9}
     />
