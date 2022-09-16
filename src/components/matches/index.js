@@ -61,38 +61,38 @@ export default function Matches() {
       hour: "2-digit",
       minute: "2-digit"
     })
-    let status = ""
+    let matchStatus = ""
     switch (match.status) {
       case "SCHEDULED":
-        status = "Запланирован"
+        matchStatus = "Запланирован"
         break
       case "LIVE":
-        status = "В прямом эфире"
+        matchStatus = "В прямом эфире"
         break
       case "IN_PLAY":
-        status = "В игре"
+        matchStatus = "В игре"
         break
       case "PAUSED":
-        status = "Пауза"
+        matchStatus = "Пауза"
         break
       case "FINISHED":
-        status = "Завершен"
+        matchStatus = "Завершен"
         break
       case "POSTPONED":
-        status = "Отложен"
+        matchStatus = "Отложен"
         break
       case "SUSPENDED":
-        status = "Приостановлен"
+        matchStatus = "Приостановлен"
         break
       case "CANCELED":
-        status = "Отменен"
+        matchStatus = "Отменен"
         break
     }
     return {
       id: index,
       date,
       time,
-      status,
+      status: matchStatus,
       homeTeam: match.homeTeam.name,
       awayTeam: match.awayTeam.name
     }
