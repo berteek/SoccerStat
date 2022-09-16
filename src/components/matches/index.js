@@ -87,6 +87,8 @@ export default function Matches() {
       case "CANCELED":
         matchStatus = "Отменен"
         break
+      default:
+        break
     }
     return {
       id: index,
