@@ -20,32 +20,32 @@ export default function Matches() {
   const columns = [
     {
       field: "date",
-      width: 200,
+      flex: 1,
       headerName: "Дата"
     },
     {
       field: "time",
-      width: 200,
+      flex: 1,
       headerName: "Время"
     },
     {
       field: "status",
-      width: 200,
+      flex: 1,
       headerName: "Статус матча"
     },
     {
       field: "homeTeam",
-      width: 200,
+      flex: 1,
       headerName: "Домашняя команда"
     },
     {
       field: "awayTeam",
-      width: 200,
+      flex: 1,
       headerName: "Гостевая команда"
     },
     {
       field: "score",
-      width: 200,
+      flex: 1,
       headerName: "Счет"
     }
   ]
