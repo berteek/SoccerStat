@@ -1,13 +1,12 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 
-import { Box, Pagination } from "@mui/material"
-import Searchbar from "../searchbar"
+import { Autocomplete, Box, Pagination, TextField } from "@mui/material"
 import CustomGrid from "../custom-grid"
 import { Page } from "../custom-grid/Page"
 
 export default function GridWithSearchAndPagination(props) {
-  const { mapper, items, searchLabel, itemsPerPage } = props
+  const { mapper, items, setItems, searchLabel, itemsPerPage } = props
 
   const [currentPageNumber, setCurrentPageNumber] = useState(0)
 
@@ -23,7 +22,19 @@ export default function GridWithSearchAndPagination(props) {
 
   return (
     <Box sx={{ padding: 2, paddingLeft: 4 }}>
-      <Searchbar label={searchLabel} />
+      <Autocomplete
+        sx={{ width: 300 }}
+        size="small"
+        freeSolo
+        onChange={(event, newValue) => {
+          const filteredItems = items.filter((item) =>
+            item.name.startsWith(newValue)
+          )
+          setItems(filteredItems)
+        }}
+        options={[]}
+        renderInput={(params) => <TextField {...params} label={searchLabel} />}
+      />
       <CustomGrid items={pages[currentPageNumber].items} mapper={mapper} />
       <Pagination
         sx={{ display: "flex", justifyContent: "center", marginTop: 3 }}
@@ -38,6 +49,7 @@ export default function GridWithSearchAndPagination(props) {
 GridWithSearchAndPagination.propTypes = {
   mapper: PropTypes.func.isRequired,
   items: PropTypes.instanceOf(Array).isRequired,
+  setItems: PropTypes.func.isRequired,
   searchLabel: PropTypes.string.isRequired,
   itemsPerPage: PropTypes.number.isRequired
 }

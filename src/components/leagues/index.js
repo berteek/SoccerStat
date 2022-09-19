@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch } from "react-redux"
 
@@ -11,12 +11,18 @@ export default function Leagues() {
   const { data, status } = useGetLeagues()
   const dispatch = useDispatch()
 
+  const [leagues, setLeagues] = useState([])
+
   if (status === "loading") {
     return <div>Loading...</div>
   }
 
   if (status === "error") {
     return <div>Error</div>
+  }
+
+  if (leagues.length === 0) {
+    setLeagues(data.competitions)
   }
 
   const mapper = (league) => {
@@ -41,7 +47,8 @@ export default function Leagues() {
   return (
     <GridWithSearchAndPagination
       mapper={mapper}
-      items={data.competitions}
+      items={leagues}
+      setItems={setLeagues}
       searchLabel="Поиск по лигам"
       itemsPerPage={9}
     />

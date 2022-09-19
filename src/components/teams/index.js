@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch } from "react-redux"
 
@@ -11,12 +11,18 @@ export default function Teams() {
   const { data, status } = useGetTeams()
   const dispatch = useDispatch()
 
+  const [teams, setTeams] = useState([])
+
   if (status === "loading") {
     return <div>Loading...</div>
   }
 
   if (status === "error") {
     return <div>Error</div>
+  }
+
+  if (teams.length === 0) {
+    setTeams(data.teams)
   }
 
   const mapper = (team) => {
@@ -39,7 +45,8 @@ export default function Teams() {
   return (
     <GridWithSearchAndPagination
       mapper={mapper}
-      items={data.teams}
+      items={teams}
+      setItems={setTeams}
       searchLabel="Поиск по командам"
       itemsPerPage={12}
     />
