@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch } from "react-redux"
 
-import { Box, Card, Typography } from "@mui/material"
+import { Box, Card, CardActionArea, CardMedia, Typography } from "@mui/material"
 import GridWithSearchAndPagination from "../grid-search-pagination"
 
 import { useGetTeams, selectTeam } from "../../app/repository"
@@ -14,11 +14,19 @@ export default function Teams() {
   const [teams, setTeams] = useState([])
 
   if (status === "loading") {
-    return <div>Loading...</div>
+    return (
+      <Typography align="center" variant="h2" marginTop={10}>
+        Загрузка...
+      </Typography>
+    )
   }
 
   if (status === "error") {
-    return <div>Error</div>
+    return (
+      <Typography align="center" variant="h2" marginTop={10}>
+        Произошла ошибка при загрузке данных!
+      </Typography>
+    )
   }
 
   if (teams.length === 0) {
@@ -31,12 +39,38 @@ export default function Teams() {
         <Card
           onClick={() => selectTeam(dispatch, team.id)}
           sx={{
-            backgroundColor: "primary.main",
-            padding: 2,
-            height: 100
+            backgroundColor: "#333",
+            height: 130
           }}
         >
-          <Typography>{team.name}</Typography>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              sx={{
+                filter: "opacity(40%)"
+              }}
+              src={
+                team.crestUrl
+                  ? team.crestUrl
+                  : "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/800px-A_black_image.jpg?20201103073518"
+              }
+              height={140}
+            />
+            <Typography
+              sx={{
+                position: "absolute",
+                top: 50,
+                width: "inherit",
+                left: "50%",
+                transform: "translateX(-50%)",
+                color: "white"
+              }}
+              align="center"
+              variant="h5"
+            >
+              {team.name}
+            </Typography>
+          </CardActionArea>
         </Card>
       </Box>
     )
@@ -48,7 +82,7 @@ export default function Teams() {
       items={teams}
       setItems={setTeams}
       searchLabel="Поиск по командам"
-      itemsPerPage={12}
+      itemsPerPage={24}
     />
   )
 }

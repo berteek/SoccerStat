@@ -1,19 +1,22 @@
 import { createTheme } from "@mui/material"
-import { orange } from "@mui/material/colors"
+import { grey } from "@mui/material/colors"
 
 export function getMainTheme() {
   return createTheme({
     palette: {
       primary: {
-        main: orange[200],
-        lighter: orange[100]
+        main: grey[600],
+        lighter: grey[200]
       },
       secondary: {
-        main: orange[300],
-        darker: orange[400]
+        main: grey[300],
+        darker: grey[400]
       },
       dark: {
-        main: orange[800]
+        main: grey[800]
+      },
+      light: {
+        main: grey[50]
       }
     }
   })

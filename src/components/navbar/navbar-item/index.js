@@ -16,7 +16,7 @@ export default function NavbarItem(props) {
   return (
     <Box
       sx={{
-        backgroundColor: "primary.lighter",
+        backgroundColor: "secondary.main",
         width: "fit-content"
       }}
     >

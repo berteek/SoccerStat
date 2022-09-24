@@ -9,8 +9,8 @@ export default function Navbar() {
     <Box
       sx={{
         display: "flex",
-        backgroundColor: "primary.main",
-        paddingLeft: "70px",
+        backgroundColor: "primary.lighter",
+        paddingLeft: "60px",
         gap: 3
       }}
     >

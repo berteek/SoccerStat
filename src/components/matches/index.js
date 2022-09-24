@@ -60,6 +60,8 @@ function calculateRows(matches) {
       scoreFullTime = match.score.fullTime.homeTeam
         .toString()
         .concat(":", match.score.fullTime.awayTeam)
+    } else {
+      scoreFullTime = "-:-"
     }
 
     let scoreExtraTime = ""
@@ -67,6 +69,8 @@ function calculateRows(matches) {
       scoreExtraTime = match.score.extraTime.homeTeam
         .toString()
         .concat(":", match.score.extraTime.awayTeam)
+    } else {
+      scoreExtraTime = "-:-"
     }
 
     let scorePenalties = ""
@@ -74,6 +78,8 @@ function calculateRows(matches) {
       scorePenalties = match.score.penalties.homeTeam
         .toString()
         .concat(":", match.score.penalties.awayTeam)
+    } else {
+      scorePenalties = "-:-"
     }
 
     return {
@@ -110,20 +116,39 @@ export default function Matches() {
   }, [matches])
 
   if (status === "loading") {
-    return <div>Loading...</div>
+    return (
+      <Typography align="center" variant="h2" marginTop={10}>
+        Загрузка...
+      </Typography>
+    )
   }
 
   if (status === "error") {
-    return <div>Error</div>
+    return (
+      <Typography align="center" variant="h2" marginTop={10}>
+        Произошла ошибка при загрузке данных!
+      </Typography>
+    )
+  }
+
+  if (!data.matches) {
+    return (
+      <Typography align="center" variant="h2" marginTop={10}>
+        Нет достпуных матчей!
+      </Typography>
+    )
   }
 
   if (matches.length === 0) {
     setMatches(data.matches)
   }
 
+  console.log(data.matches)
+
   const columns = [
     {
       field: "date",
+      minWidth: 100,
       flex: 1,
       align: "center",
       headerAlign: "center",
@@ -131,6 +156,7 @@ export default function Matches() {
     },
     {
       field: "time",
+      minWidth: 100,
       flex: 1,
       align: "center",
       headerAlign: "center",
@@ -138,6 +164,7 @@ export default function Matches() {
     },
     {
       field: "status",
+      minWidth: 150,
       flex: 1,
       align: "center",
       headerAlign: "center",
@@ -145,6 +172,7 @@ export default function Matches() {
     },
     {
       field: "homeTeam",
+      minWidth: 160,
       flex: 1,
       align: "center",
       headerAlign: "center",
@@ -152,6 +180,7 @@ export default function Matches() {
     },
     {
       field: "awayTeam",
+      minWidth: 160,
       flex: 1,
       align: "center",
       headerAlign: "center",
@@ -159,6 +188,7 @@ export default function Matches() {
     },
     {
       field: "scoreFullTime",
+      minWidth: 150,
       flex: 1,
       align: "center",
       headerAlign: "center",
@@ -166,6 +196,7 @@ export default function Matches() {
     },
     {
       field: "scoreExtraTime",
+      minWidth: 150,
       flex: 1,
       align: "center",
       headerAlign: "center",
@@ -173,6 +204,7 @@ export default function Matches() {
     },
     {
       field: "scorePenalties",
+      minWidth: 150,
       flex: 1,
       align: "center",
       headerAlign: "center",
@@ -181,7 +213,7 @@ export default function Matches() {
   ]
 
   return (
-    <Stack spacing={2} margin={4}>
+    <Stack spacing={2} height="80vh" width="96vw" marginTop={4} marginX="auto">
       <Typography variant="h5">Матчи</Typography>
       <Stack direction="row" alignItems="center" spacing={2}>
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ru">
@@ -223,13 +255,14 @@ export default function Matches() {
           />
         </LocalizationProvider>
       </Stack>
-      <Box sx={{ height: 400, width: "100%" }}>
-        <DataGrid
-          columns={columns}
-          rows={rows}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-        />
+      <Box
+        sx={{
+          height: 400,
+          flex: 1,
+          mx: "auto"
+        }}
+      >
+        <DataGrid columns={columns} rows={rows} autoPageSize />
       </Box>
     </Stack>
   )

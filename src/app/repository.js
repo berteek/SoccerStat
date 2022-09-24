@@ -9,8 +9,6 @@ import {
 async function fetchData(filters) {
   const url = "https://api.football-data.org/v2".concat(filters)
 
-  console.log(url)
-
   const response = await fetch(url, {
     headers: {
       "X-Auth-Token": process.env.REACT_APP_API_KEY

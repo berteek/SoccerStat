@@ -37,8 +37,11 @@ export default function GridWithSearchAndPagination(props) {
       />
       <CustomGrid items={pages[currentPageNumber].items} mapper={mapper} />
       <Pagination
-        sx={{ display: "flex", justifyContent: "center", marginTop: 3 }}
-        color="secondary"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: 3
+        }}
         count={pages.length}
         onChange={(_, pageNumber) => setCurrentPageNumber(pageNumber - 1)}
       />
