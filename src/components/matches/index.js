@@ -211,7 +211,7 @@ export default function Matches() {
   ]
 
   return (
-    <Stack spacing={2} height="80vh" width="96vw" marginTop={4} marginX="auto">
+    <Stack spacing={2} height="80vh" width="96vw" marginY={4} marginX="auto">
       <Typography variant="h5">Матчи</Typography>
       <Stack direction="row" alignItems="center" spacing={2}>
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ru">

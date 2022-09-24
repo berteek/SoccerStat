@@ -59,7 +59,7 @@ export default function Leagues() {
             <Typography
               sx={{
                 position: "absolute",
-                top: 30,
+                top: 35,
                 width: "inherit",
                 left: "50%",
                 transform: "translateX(-50%)",
@@ -73,13 +73,13 @@ export default function Leagues() {
             <Typography
               sx={{
                 position: "absolute",
-                top: 70,
+                top: 100,
                 left: "50%",
                 transform: "translateX(-50%)",
                 color: "white"
               }}
               align="center"
-              variant="h6"
+              variant="h7"
             >
               {league.area.name}
             </Typography>
