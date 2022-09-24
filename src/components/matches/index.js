@@ -143,8 +143,6 @@ export default function Matches() {
     setMatches(data.matches)
   }
 
-  console.log(data.matches)
-
   const columns = [
     {
       field: "date",

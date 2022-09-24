@@ -92,6 +92,7 @@ export default function Leagues() {
   return (
     <GridWithSearchAndPagination
       mapper={mapper}
+      initialItems={data.competitions}
       items={leagues}
       setItems={setLeagues}
       searchLabel="Поиск по лигам"

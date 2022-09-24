@@ -6,7 +6,8 @@ import CustomGrid from "../custom-grid"
 import { Page } from "../custom-grid/Page"
 
 export default function GridWithSearchAndPagination(props) {
-  const { mapper, items, setItems, searchLabel, itemsPerPage } = props
+  const { mapper, initialItems, items, setItems, searchLabel, itemsPerPage } =
+    props
 
   const [currentPageNumber, setCurrentPageNumber] = useState(0)
 
@@ -27,10 +28,14 @@ export default function GridWithSearchAndPagination(props) {
         size="small"
         freeSolo
         onChange={(event, newValue) => {
-          const filteredItems = items.filter((item) =>
-            item.name.startsWith(newValue)
-          )
-          setItems(filteredItems)
+          if (newValue) {
+            const filteredItems = items.filter((item) =>
+              item.name.toLowerCase().startsWith(newValue.toLowerCase())
+            )
+            setItems(filteredItems)
+          } else {
+            setItems(initialItems)
+          }
         }}
         options={[]}
         renderInput={(params) => <TextField {...params} label={searchLabel} />}
@@ -51,6 +56,7 @@ export default function GridWithSearchAndPagination(props) {
 
 GridWithSearchAndPagination.propTypes = {
   mapper: PropTypes.func.isRequired,
+  initialItems: PropTypes.instanceOf(Array).isRequired,
   items: PropTypes.instanceOf(Array).isRequired,
   setItems: PropTypes.func.isRequired,
   searchLabel: PropTypes.string.isRequired,

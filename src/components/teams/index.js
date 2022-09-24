@@ -79,6 +79,7 @@ export default function Teams() {
   return (
     <GridWithSearchAndPagination
       mapper={mapper}
+      initialItems={data.teams}
       items={teams}
       setItems={setTeams}
       searchLabel="Поиск по командам"
