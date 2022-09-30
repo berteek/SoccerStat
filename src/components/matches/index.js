@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react"
 
+import { useParams } from "react-router-dom"
+
 import dayjs from "dayjs"
 import "dayjs/locale/ru"
 
@@ -97,7 +99,9 @@ function calculateRows(matches) {
 }
 
 export default function Matches() {
-  const { data, status } = useGetMatches()
+  const { type, id } = useParams()
+
+  const { data, status } = useGetMatches(type, id)
 
   const [matches, setMatches] = useState([])
   const [rows, setRows] = useState([])

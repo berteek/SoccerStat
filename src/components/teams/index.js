@@ -1,15 +1,13 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
-import { useDispatch } from "react-redux"
 
 import { Box, Card, CardActionArea, CardMedia, Typography } from "@mui/material"
 import GridWithSearchAndPagination from "../grid-search-pagination"
 
-import { useGetTeams, selectTeam } from "../../app/repository"
+import { useGetTeams } from "../../app/repository"
 
 export default function Teams() {
   const { data, status } = useGetTeams()
-  const dispatch = useDispatch()
 
   const [teams, setTeams] = useState([])
 
@@ -35,9 +33,8 @@ export default function Teams() {
 
   const mapper = (team) => {
     return (
-      <Box component={Link} to="/matches">
+      <Box component={Link} to={"/matches/team/".concat(team.id.toString())}>
         <Card
-          onClick={() => selectTeam(dispatch, team.id)}
           sx={{
             backgroundColor: "#333",
             height: 130

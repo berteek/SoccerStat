@@ -1,11 +1,5 @@
 import { useQuery } from "react-query"
 
-import { useSelector } from "react-redux"
-import {
-  selectLeague as sliceSelectLeague,
-  selectTeam as sliceSelectTeam
-} from "../features/dataSlice"
-
 async function fetchData(filters) {
   const url = "https://api.football-data.org/v2".concat(filters)
 
@@ -18,17 +12,15 @@ async function fetchData(filters) {
   return response.json()
 }
 
-export function useGetMatches() {
-  const selection = useSelector((state) => state.data.selection)
-  return useQuery("matches", () => fetchData(selection.concat("/matches")))
-}
-
-export function selectLeague(dispatch, leagueCode) {
-  dispatch(sliceSelectLeague(leagueCode))
-}
-
-export function selectTeam(dispatch, teamCode) {
-  dispatch(sliceSelectTeam(teamCode))
+export function useGetMatches(type, id) {
+  let query = ""
+  if (type === "league") {
+    query = "/competitions/"
+  } else if (type === "team") {
+    query = "/teams/"
+  }
+  query = query.concat(id.toString(), "/matches")
+  return useQuery("matches", () => fetchData(query))
 }
 
 export function useGetLeagues() {
